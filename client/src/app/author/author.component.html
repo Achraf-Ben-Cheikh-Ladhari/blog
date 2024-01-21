@@ -1,0 +1,64 @@
+<section class="page-header section-sm">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="row g-4 g-lg-5 text-center text-lg-start justify-content-center justify-content-lg-start">
+            <div class="col-lg-3 col-md-4 col-sm-5 col-6">
+              <img class="img-fluid rounded" [src]="'http://127.0.0.1:3000/getimage/'+author.image" alt="Thomas Macaulay" width="250" height="250">
+            </div>
+            <div class="col-lg-9 col-md-12">
+              <p class="mb-2"><span class="fw-bold text-black">03</span> Published posts</p>
+              <h1 class="h3 text-dark mb-3">{{author.name+' '+author.lastname}}</h1>
+              <div class="content">
+                <p>{{author.about}}</p>
+                <button class="btn btn-dark" [routerLink]="['/create']">Create new Article</button>              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="container">
+    <div class="row gy-5 gx-4 g-xl-5" >
+      <div class="col-lg-6"*ngFor="let article of articles">
+        <article class="card post-card h-100 border-0 bg-transparent">
+          <div class="card-body">
+            <a class="d-block" title="{{article.title}}">
+              <div class="post-image position-relative" [routerLink]="['/article/',article._id]">
+                <img class="w-100 h-auto rounded" [src]='"http://localhost:3000/getimage/"+article.image' alt="The AGI hype train is running out of steam" width="970" height="500">
+              </div>
+            </a>
+            <ul class="card-meta list-inline mb-3">
+              <li class="list-inline-item mt-2">
+                <i class="ti ti-calendar-event"></i>
+                <span>{{article.date|date:'fullDate'}}</span>
+              </li>
+              <li class="list-inline-item mt-2">—</li>
+              <li class="list-inline-item mt-2">
+                <i class="ti ti-clock"></i>
+                <span>02 min read</span>
+              </li>
+            </ul>
+            <a class="d-block" [routerLink]="['/article/',article._id]"
+              title="{{article.title}}">
+              <h3 class="mb-3 post-title">
+                {{article.title}}
+              </h3>
+            </a>
+            <p>{{article.description}}</p>
+          </div>
+          <div class="card-footer border-top-0 bg-transparent p-0">
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item mt-2">
+                <ul class="card-meta-tag list-inline">
+                  <li class="list-inline-item small" *ngFor="let tag of article.tags"><a >{{tag}}</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>

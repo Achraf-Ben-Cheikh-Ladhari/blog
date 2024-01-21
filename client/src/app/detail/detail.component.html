@@ -1,0 +1,83 @@
+<section class="section-sm pb-0">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="mb-5">
+            <h3 class="h1 mb-4 post-title">{{article.title}}</h3>
+            <ul class="card-meta list-inline mb-2">
+              <li class="list-inline-item mt-2">—</li>
+              <li class="list-inline-item mt-2">
+                <i class="ti ti-clock"></i>
+                <span>02 min read</span>
+              </li>
+              <li class="list-inline-item mt-2">—</li>
+              <li class="list-inline-item mt-2">
+                <i class="ti ti-calendar-event"></i>
+                <span>{{article.date|date:'fullDate'}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="mb-5 text-center">
+            <img class="w-100 h-auto rounded" [src]="'http://localhost:3000/getimage/'+article.image" alt="{{article.title}}" width="970" height="500">
+          </div>
+        </div>
+        <div class="col-lg-8 post-content-block order-0 order-lg-2">
+          <div class="content">
+            <h3>Description </h3>
+            <p>{{article.description}}</p>
+            <h3>Content</h3>
+            <p>{{article.content}}</p>
+          </div>
+  
+          <ul class="post-meta-tag list-unstyled list-inline mt-5">
+            <li class="list-inline-item">Tags: </li>
+            <li class="list-inline-item" *ngFor="let item of article.tags"><a class="bg-white">{{item}}</a></li>
+          </ul>
+        </div>
+      </div>
+  
+      
+      <div class="single-post-author">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="d-block d-md-flex">
+              <a>
+                <img class="rounded mr-4" [src]="'http://localhost:3000/getimage/'+user.image" alt="Thomas Macaulay" width="155" height="155">
+              </a>
+              <div class="ms-0 ms-md-4 ps-0 ps-md-3 mt-4 mt-md-0">
+                <h3 class="h4 mb-3"><a class="text-dark">{{user.name + ' '+user.lastname}}</a></h3>
+                <p>{{user.about}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="disqus-comment">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <div class="block"><div id="disqus_thread"></div>
+              <script type="application/javascript">
+                var disqus_config = function () {};
+                (function() {
+                  if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                    document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                    return;
+                  }
+                  var d = document, s = d.createElement('script'); s.async = true;
+                  s.src = '//' + "platol" + '.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
