@@ -44,4 +44,4 @@ https://www.youtube.com/@Yolio_career
 http://achrafladhari.c1.biz/en
 
 ## LinkedIn
-https://www.linkedin.com/in/achraf-ben-cheikh-ladhari-0429511bafbclid=IwAR3gYa5JIlgaD3wBW6txwblID2AC5ZDB0r8eggXAxO1vxlgjbGG8T4UYlpI
+https://www.linkedin.com/in/achraf-ben-cheikh-ladhari-0429511ba
