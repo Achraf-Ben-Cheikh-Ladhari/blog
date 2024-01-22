@@ -1,4 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
+# env
+.env
+.env.example
+.env.local
+.env.staging
 
 # Compiled output
 /dist
@@ -19,7 +24,6 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
-.env
 
 # Visual Studio Code
 .vscode/*
