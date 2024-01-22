@@ -14,7 +14,6 @@ export class AboutComponent implements OnInit{
   constructor(private _auth:AuthService,private _articles:ArticleService){}
 
   ngOnInit(): void {
-
       this._articles.getAllArticle()
       .subscribe(res=>{
         this.article=res;
@@ -32,5 +31,7 @@ export class AboutComponent implements OnInit{
         }
       })
   }
-
+  update() {
+    this.ngOnInit();
+}  
 }

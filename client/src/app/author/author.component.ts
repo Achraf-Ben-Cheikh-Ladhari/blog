@@ -12,22 +12,26 @@ export class AuthorComponent implements OnInit{
   id:any;
   author:any;
   articles:any=[];
+  
   constructor(public _auth:AuthService,private act:ActivatedRoute,private _article:ArticleService){}  
   ngOnInit(): void { 
+    
     this.id=this.act.snapshot.paramMap.get('id');
     this._auth.getById(this.id)
     .subscribe(
       res=>{
-        this.author=res;
-        console.log(this.author)
+        this.author=res;      
+        this.author.count=0;
+
       }
     )
     this._article.getArticleByIdAuthor(this.id)
     .subscribe(res=>{
       this.articles=res;
-      console.log(this.articles);
-      
+      this.author.count=this.articles.length;
     })
+    
+    
   }
 
 }

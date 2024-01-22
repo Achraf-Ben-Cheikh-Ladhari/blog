@@ -8,7 +8,7 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  private url='http://127.0.0.1:3000/author/';
+  private url='https://blog-app-pzh6.onrender.com/author/';
   register(author:any){
     return this.http.post(this.url+'register',author);
   }

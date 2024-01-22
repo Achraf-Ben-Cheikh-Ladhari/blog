@@ -8,7 +8,7 @@ export class ArticleService {
 
   constructor(private http:HttpClient) { }
 
-  url='http://127.0.0.1:3000/article/';
+  url='https://blog-app-pzh6.onrender.com/article/';
 
   create(article:any){
     return this.http.post(this.url+'ajout',article);

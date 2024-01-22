@@ -33,7 +33,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Don't forget 'npm i' in backend side 
 Backend folder 'server' tools: Mongodb, Express, NodeJS
-
+Create .env file contains your PORT and your DATABASE URL
 ## Yolio Tutos
 
 https://www.youtube.com/@Yolio_career
