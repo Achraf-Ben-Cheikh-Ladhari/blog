@@ -10,5 +10,5 @@ app.use('/article',articleApi);
 app.use('/author', authorApi);
 app.use('/getimage',express.static('./upload'));
 app.listen(process.env.PORT,()=>{
-    console.log('server working !')
+    console.log('server working !'+process.env.PORT)
 })
