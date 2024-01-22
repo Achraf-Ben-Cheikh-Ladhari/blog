@@ -12,9 +12,9 @@
         <div class="col-lg-6" *ngFor="let item of article">
           <article class="card post-card h-100 border-0 bg-transparent">
             <div class="card-body">
-              <a class="d-block" [routerLink]="['/article/',item._id]" title="The AGI hype train is running out of steam">
+              <a class="d-block" [routerLink]="['/article/',item._id]" title="{{item.title}}">
                 <div class="post-image position-relative">
-                  <img class="w-100 h-auto rounded" [src]="'https://blog-app-pzh6.onrender.com/getimage/'+item.image" alt="The AGI hype train is running out of steam" width="970" height="500">
+                  <img class="w-100 h-auto rounded" [src]="'https://blog-app-pzh6.onrender.com/getimage/'+item.image" alt="{{item.title}}" width="970" height="500">
                 </div>
               </a>
               <ul class="card-meta list-inline mb-3">
@@ -29,7 +29,7 @@
                 </li>
               </ul>
               <a class="d-block" [routerLink]="['/article/',item._id]"
-                title="The AGI hype train is running out of steam">
+                title="{{item.title}}">
                 <h3 class="mb-3 post-title">
                   {{item.title}}
                 </h3>
