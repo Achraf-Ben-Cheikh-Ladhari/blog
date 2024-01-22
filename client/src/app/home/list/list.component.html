@@ -39,8 +39,8 @@
             <div class="card-footer border-top-0 bg-transparent p-0">
               <ul class="card-meta list-inline">
                 <li class="list-inline-item mt-2" *ngFor="let user of users">
-                  <a class="card-meta-author" title="Read all posts by - Thomas Macaulay" *ngIf="user._id==item.idAuthor">
-                    <img class="w-auto" [src]="'https://blog-app-pzh6.onrender.com/getimage/'+user.image" alt="Thomas Macaulay"  width="26" height="26"> by <span>{{user.name}}</span>
+                  <a class="card-meta-author" title="Read all posts by - {{user.name}}" *ngIf="user._id==item.idAuthor">
+                    <img class="w-auto" [src]="'https://blog-app-pzh6.onrender.com/getimage/'+user.image" alt="{{user.name}}"  width="26" height="26"> by <span>{{user.name}}</span>
                   </a>
                 </li>
                 <li class="list-inline-item mt-2">•</li>
