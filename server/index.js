@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 app.use('/article',articleApi);
 app.use('/author', authorApi);
-app.use('/getimage',express.static('./upload'));
+app.use('/getimage',express.static(process.env.CLOUDINARY_URL));
 app.listen(process.env.PORT,()=>{
     console.log('server working !'+process.env.PORT)
 })
