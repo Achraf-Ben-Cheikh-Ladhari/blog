@@ -41,7 +41,6 @@ router.post('/register',upload.any('image'),(req,res)=>{
 
 router.post('/login',(req,res)=>{
     data=req.body;
-    console.log(data);
     Author.findOne({email:data.email})
     .then(
         (author)=>{
