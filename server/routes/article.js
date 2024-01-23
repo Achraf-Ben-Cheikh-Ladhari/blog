@@ -5,7 +5,7 @@ const Article=require('../models/article');
 const multer=require('multer');
 filename='';
 const mystorage=multer.diskStorage({
-    destination:'./upload',
+    destination:process.env.CLOUDINARY_URL+'/upload',
     filename:(req,file,redirect)=>{
         let date=Date.now();
         let fl=date+'.'+file.mimetype.split('/')[1];
