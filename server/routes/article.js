@@ -27,7 +27,7 @@ router.post('/ajout',upload.any('image'),(req,res)=>{
     let newArticle=new Article(data)
     newArticle.date= new Date();
     newArticle.tags=data.tags.split(',');
-    cloudinary.uploader.upload(req.files[0].path).then(result.secure_url=newAuthor.image);
+    cloudinary.uploader.upload(req.files[0].path).then(result=>console.log(result));
     newArticle.save()
     .then((saved)=>{
        filename='';
