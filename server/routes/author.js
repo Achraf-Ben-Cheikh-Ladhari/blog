@@ -32,7 +32,7 @@ router.post('/register',upload.any('image'),(req,res)=>{
     //cryptage
     salt=bcrypt.genSaltSync(10);
     newAuthor.password=bcrypt.hashSync(data.password,salt);
-    cloudinary.uploader.upload(req.files[0].path).then(result=>{newArticle.image=result.url;console.log(newArticle.image)});
+    cloudinary.uploader.upload(req.files[0].path).then(result=>{newArticle.image=result.url;console.log(result.url);console.log(newAuthor.image);});
     newAuthor.save()
     .then((savedAuthor)=>{
         filename='';
