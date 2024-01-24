@@ -4,6 +4,11 @@ const Author=require('../models/author');
 const bcrypt=require('bcrypt');
 const jWt=require('jsonwebtoken');
 const cloudinary=require('cloudinary').v2;
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+  });
 //Partie image
 const multer=require('multer');
 filename='';
@@ -27,7 +32,7 @@ router.post('/register',upload.any('image'),(req,res)=>{
     //cryptage
     salt=bcrypt.genSaltSync(10);
     newAuthor.password=bcrypt.hashSync(data.password,salt);
-    cloudinary.uploader.upload(req.files[0].path).then(result=>newAuthor.image=result.secure_url);
+    cloudinary.uploader.upload(req.files[0].path).then(result.secure_url=newAuthor.image);
     newAuthor.save()
     .then((savedAuthor)=>{
         filename='';

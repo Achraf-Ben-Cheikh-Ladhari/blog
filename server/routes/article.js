@@ -2,6 +2,11 @@ const express=require('express');
 const router=express.Router();
 const Article=require('../models/article');
 const cloudinary=require('cloudinary').v2;
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+  });
 //Partie image
 const multer=require('multer');
 filename='';
@@ -22,7 +27,7 @@ router.post('/ajout',upload.any('image'),(req,res)=>{
     let newArticle=new Article(data)
     newArticle.date= new Date();
     newArticle.tags=data.tags.split(',');
-    cloudinary.uploader.upload(req.files[0].path).then(result=>newAuthor.image=result.secure_url);
+    cloudinary.uploader.upload(req.files[0].path).then(result.secure_url=newAuthor.image);
     newArticle.save()
     .then((saved)=>{
        filename='';
