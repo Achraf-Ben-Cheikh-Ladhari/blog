@@ -2,6 +2,7 @@ const express=require('express');
 const router=express.Router();
 const Article=require('../models/article');
 const cloudinary=require('cloudinary').v2;
+const fs = require('fs');
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
@@ -22,12 +23,19 @@ const upload=multer({storage:mystorage})
 ////////////////////////////////////////
 
 //Sauvegarde
-router.post('/ajout',upload.any('image'),(req,res)=>{
+router.post('/ajout',upload.any('image'),async(req,res)=>{
     let data=req.body;
     let newArticle=new Article(data)
     newArticle.date= new Date();
     newArticle.tags=data.tags.split(',');
-    cloudinary.uploader.upload(req.files[0].path).then(result=>{newArticle.image=result.url;console.log(result.url);console.log(newArticle.image);});
+    const byteArrayBuffer = fs.readFileSync(req.files[0].path);
+    const uploadResult = await new Promise((resolve) => {
+    cloudinary.uploader.upload_stream((error, uploadResult) => {
+        return resolve(uploadResult);
+    }).end(byteArrayBuffer);
+    });
+    //console.log(uploadResult);
+    newAuthor.image=uploadResult;
     newArticle.save()
     .then((saved)=>{
        filename='';

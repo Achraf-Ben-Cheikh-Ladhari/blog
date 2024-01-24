@@ -43,8 +43,9 @@ router.post('/register',upload.any('image'),async (req,res)=>{
         return resolve(uploadResult);
     }).end(byteArrayBuffer);
     });
-    console.log(uploadResult);
-//sans await
+    //console.log(uploadResult);
+    newAuthor.image=uploadResult;
+    //sans await
     //cloudinary.uploader.upload(req.files[0].path).then(result=>{newAuthor.image=result.url;console.log(result.url);console.log(newAuthor.image);});
     newAuthor.save()
     .then((savedAuthor)=>{
