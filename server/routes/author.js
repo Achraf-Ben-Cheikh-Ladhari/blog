@@ -27,8 +27,11 @@ router.post('/register',upload.any('image'),(req,res)=>{
     //cryptage
     salt=bcrypt.genSaltSync(10);
     newAuthor.password=bcrypt.hashSync(data.password,salt);
-    const result = cloudinary.uploader.upload(req.files[0].path);    
-    newAuthor.image=result.secure_url;
+    const result = cloudinary.uploader.upload(req.files[0].path);
+    cloudinary.v2.uploader
+    .upload(req.files[0].path)
+    .then(result=>newAuthor.image=result.secure_url);   
+    //newAuthor.image=result.secure_url;
     newAuthor.save()
     .then((savedAuthor)=>{
         filename='';
