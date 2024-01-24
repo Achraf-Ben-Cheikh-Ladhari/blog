@@ -18,6 +18,9 @@ const Article=mongoose.model('Article',{
     image:{
         type:String
     },
+    timer:{
+        type:String
+    },
     tags:{
         type:Array
     }
