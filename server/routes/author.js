@@ -25,14 +25,26 @@ const upload=multer({storage:mystorage})
 
 
 //creation
-router.post('/register',upload.any('image'),(req,res)=>{
+router.post('/register',upload.any('image'),async (req,res)=>{
     data=req.body;
     let newAuthor=new Author(data);
-    newAuthor.image=filename;
+    //newAuthor.image=filename;
     //cryptage
     salt=bcrypt.genSaltSync(10);
     newAuthor.password=bcrypt.hashSync(data.password,salt);
-    cloudinary.uploader.upload(req.files[0].path).then(result=>{newAuthor.image=result.url;console.log(result.url);console.log(newAuthor.image);});
+
+    //await
+
+
+    const byteArrayBuffer = fs.readFileSync(req.files[0].path);
+    const uploadResult = await new Promise((resolve) => {
+    cloudinary.uploader.upload_stream((error, uploadResult) => {
+        return resolve(uploadResult);
+    }).end(byteArrayBuffer);
+    });
+    console.log(uploadResult);
+//sans await
+    //cloudinary.uploader.upload(req.files[0].path).then(result=>{newAuthor.image=result.url;console.log(result.url);console.log(newAuthor.image);});
     newAuthor.save()
     .then((savedAuthor)=>{
         filename='';
