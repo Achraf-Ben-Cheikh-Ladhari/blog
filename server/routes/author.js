@@ -3,6 +3,7 @@ const router=express.Router();
 const Author=require('../models/author');
 const bcrypt=require('bcrypt');
 const jWt=require('jsonwebtoken');
+const fs = require('fs');
 const cloudinary=require('cloudinary').v2;
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
