@@ -21,7 +21,7 @@
         <textarea [(ngModel)]="article.description" title="" id="" cols="30" rows="4" placeholder="description" class="form-control m-1" ></textarea>
 
         <div class="m-1">
-         <angular-editor [(ngModel)]="article.content" [placeholder]="'Enter text here...'" ></angular-editor>
+         <angular-editor [placeholder]="'Enter text here...'" [config]="config" [(ngModel)]="article.content"></angular-editor>
         </div>
 
         <button (click)="createarticle()" class="btn btn-dark form-control m-1">create</button>
