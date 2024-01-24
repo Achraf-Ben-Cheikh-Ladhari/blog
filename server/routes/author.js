@@ -3,6 +3,7 @@ const router=express.Router();
 const Author=require('../models/author');
 const bcrypt=require('bcrypt');
 const jWt=require('jsonwebtoken');
+const cloudinary=require('cloudinary').v2;
 //Partie image
 const multer=require('multer');
 filename='';
