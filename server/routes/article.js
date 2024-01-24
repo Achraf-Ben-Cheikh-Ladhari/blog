@@ -35,7 +35,7 @@ router.post('/ajout',upload.any('image'),async(req,res)=>{
     }).end(byteArrayBuffer);
     });
     //console.log(uploadResult);
-    newArticle.image=uploadResult;
+    newArticle.image=uploadResult.url;
     newArticle.save()
     .then((saved)=>{
        filename='';
