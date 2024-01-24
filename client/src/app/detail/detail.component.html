@@ -5,7 +5,7 @@
           <div class="mb-5">
             <h3 class="h1 mb-4 post-title">{{article.title}}</h3>
             <ul class="card-meta list-inline mb-2">
-              <li class="list-inline-item mt-2"><img class="w-auto" [src]="'https://blog-app-pzh6.onrender.com/getimage/'+user.image" alt="{{user.name}}"  width="26" height="26"></li>
+              <li class="list-inline-item mt-2"><img class="w-auto" [src]="user.image" alt="{{user.name}}"  width="26" height="26"></li>
               <li class="list-inline-item mt-2">{{user.name + ' '+user.lastname}}</li>
               <li class="list-inline-item mt-2">—</li>
               <li class="list-inline-item mt-2">
@@ -22,7 +22,7 @@
         </div>
         <div class="col-lg-12">
           <div class="mb-5 text-center">
-            <img class="w-100 h-auto rounded" [src]="'https://blog-app-pzh6.onrender.com/getimage/'+article.image" alt="{{article.title}}" width="970" height="500">
+            <img class="w-100 h-auto rounded" [src]="article.image" alt="{{article.title}}" width="970" height="500">
           </div>
         </div>
         <div class="col-lg-8 post-content-block order-0 order-lg-2">
@@ -46,7 +46,7 @@
           <div class="col-lg-10">
             <div class="d-block d-md-flex">
               <a>
-                <img class="rounded mr-4" [src]="'https://blog-app-pzh6.onrender.com/getimage/'+user.image" alt="{{user.name}}" width="155" height="155">
+                <img class="rounded mr-4" [src]="user.image" alt="{{user.name}}" width="155" height="155">
               </a>
               <div class="ms-0 ms-md-4 ps-0 ps-md-3 mt-4 mt-md-0">
                 <h3 class="h4 mb-3"><a class="text-dark">{{user.name + ' '+user.lastname}}</a></h3>

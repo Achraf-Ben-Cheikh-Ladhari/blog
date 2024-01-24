@@ -14,7 +14,7 @@
             <div class="card-body">
               <a class="d-block" [routerLink]="['/article/',item._id]" title="{{item.title}}">
                 <div class="post-image position-relative">
-                  <img class="w-100 h-auto rounded" [src]="'https://blog-app-pzh6.onrender.com/getimage/'+item.image" alt="{{item.title}}" width="970" height="500">
+                  <img class="w-100 h-auto rounded" [src]="item.image" alt="{{item.title}}" width="970" height="500">
                 </div>
               </a>
               <ul class="card-meta list-inline mb-3">
@@ -40,7 +40,7 @@
               <ul class="card-meta list-inline">
                 <li class="list-inline-item mt-2" *ngFor="let user of users">
                   <a class="card-meta-author" title="Read all posts by - {{user.name}}" *ngIf="user._id==item.idAuthor">
-                    <img class="w-auto" [src]="'https://blog-app-pzh6.onrender.com/getimage/'+user.image" alt="{{user.name}}"  width="26" height="26"> by <span>{{user.name}}</span>
+                    <img class="w-auto" [src]="user.image" alt="{{user.name}}"  width="26" height="26"> by <span>{{user.name}}</span>
                   </a>
                 </li>
                 <li class="list-inline-item mt-2">•</li>

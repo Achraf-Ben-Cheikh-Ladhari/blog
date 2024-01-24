@@ -7,7 +7,6 @@ const jWt=require('jsonwebtoken');
 const multer=require('multer');
 filename='';
 const mystorage=multer.diskStorage({
-    destination:process.env.CLOUDINARY_URL+'/upload',
     filename:(req,file,redirect)=>{
         let date=Date.now();
         let fl=date+'.'+file.mimetype.split('/')[1];
@@ -27,6 +26,8 @@ router.post('/register',upload.any('image'),(req,res)=>{
     //cryptage
     salt=bcrypt.genSaltSync(10);
     newAuthor.password=bcrypt.hashSync(data.password,salt);
+    const result = cloudinary.uploader.upload(req.files[0].path);    
+    newAuthor.image=result.secure_url;
     newAuthor.save()
     .then((savedAuthor)=>{
         filename='';

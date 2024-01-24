@@ -4,7 +4,7 @@
         <div class="col-lg-10">
           <div class="row g-4 g-lg-5 text-center text-lg-start justify-content-center justify-content-lg-start">
             <div class="col-lg-3 col-md-4 col-sm-5 col-6">
-              <img class="img-fluid rounded" [src]="'https://blog-app-pzh6.onrender.com/getimage/'+author.image" alt="{{author.name}}" width="250" height="250">
+              <img class="img-fluid rounded" [src]="author.image" alt="{{author.name}}" width="250" height="250">
             </div>
             <div class="col-lg-9 col-md-12">
               <p class="mb-2"><span class="fw-bold text-black">{{author.count}}</span> Published posts</p>
@@ -27,7 +27,7 @@
           <div class="card-body">
             <a class="d-block" title="{{article.title}}">
               <div class="post-image position-relative" [routerLink]="['/article/',article._id]">
-                <img class="w-100 h-auto rounded" [src]='"https://blog-app-pzh6.onrender.com/getimage/"+article.image' alt="The AGI hype train is running out of steam" width="970" height="500">
+                <img class="w-100 h-auto rounded" [src]='article.image' alt="{{article.title}}" width="970" height="500">
               </div>
             </a>
             <ul class="card-meta list-inline mb-3">

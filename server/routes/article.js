@@ -5,7 +5,6 @@ const Article=require('../models/article');
 const multer=require('multer');
 filename='';
 const mystorage=multer.diskStorage({
-    destination:process.env.CLOUDINARY_URL+'/upload',
     filename:(req,file,redirect)=>{
         let date=Date.now();
         let fl=date+'.'+file.mimetype.split('/')[1];
@@ -21,8 +20,10 @@ router.post('/ajout',upload.any('image'),(req,res)=>{
     let data=req.body;
     let newArticle=new Article(data)
     newArticle.date= new Date();
-    newArticle.image=filename;
     newArticle.tags=data.tags.split(',');
+    const result = cloudinary.uploader.upload(req.files[0].path);    
+    newArticle.image=result.secure_url;
+
     newArticle.save()
     .then((saved)=>{
        filename='';
