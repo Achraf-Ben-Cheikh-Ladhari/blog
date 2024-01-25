@@ -61,8 +61,8 @@ export class CreatearticleComponent implements OnInit{
     fd.append('description',this.article.description)
     fd.append('tags',this.article.tags)
     fd.append('idAuthor',this._article.getAuthorDataFromToken()._id)
-    fd.append('image',this.image)
     fd.append('timer',this.article.timer)
+    fd.append('image',this.image)
     this._article.create(fd)
     .subscribe(
       res=>{
