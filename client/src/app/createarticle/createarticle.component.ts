@@ -42,7 +42,7 @@ export class CreatearticleComponent implements OnInit{
    description:'',
    content:'',
    tags:[],
-   timer:0
+   timer:''
   }
 
   tag:any='';
