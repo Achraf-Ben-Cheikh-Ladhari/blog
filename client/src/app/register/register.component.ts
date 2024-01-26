@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit{
     if (this.author.password!=''){
       fd.append('password',this.author.password)
     }
-    if (this.author.image!=undefined){
+    if (this.image!=undefined){
       fd.append('image',this.image)
     }
     fd.append('about',this.author.about)
