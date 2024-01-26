@@ -47,11 +47,10 @@ export class CreatearticleComponent implements OnInit{
 id:any
   tag:any='';
 
-  image:any;
+  image:any=undefined;
   select(e:any){
-    if (e.target.files[0]!=null){
       this.image=e.target.files[0];
-    }
+    
   }
 
   constructor(private _article:ArticleService, private router:Router,private act:ActivatedRoute){}
@@ -72,7 +71,10 @@ id:any
     fd.append('tags',this.article.tags)
     fd.append('idAuthor',this._article.getAuthorDataFromToken()._id)
     fd.append('timer',this.article.timer)
-    fd.append('image',this.image)
+    if (this.image!=undefined){
+      fd.append('image',this.image)
+
+    }
     this._article.update(this.id,fd).subscribe(res=>{
       this.router.navigate(['/article/'+this.id]);
     })
