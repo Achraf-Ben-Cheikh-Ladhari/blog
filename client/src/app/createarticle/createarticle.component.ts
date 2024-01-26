@@ -72,7 +72,7 @@ id:any
     fd.append('timer',this.article.timer)
     fd.append('image',this.image)
     this._article.update(this.id,fd).subscribe(res=>{
-      this.router.navigate(['/article/'+this.id,this._article.getAuthorDataFromToken()._id]);
+      this.router.navigate(['/article/'+this.id]);
     })
   }
 
