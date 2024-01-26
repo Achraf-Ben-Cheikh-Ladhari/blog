@@ -125,7 +125,7 @@ router.delete('/supprimer/:id',(req,res)=>{
 router.put('/update/author/:id',upload.any('image'),async(req,res)=>{
     id=req.params.id;
     let data=req.body;
-    if (data.password.length>0){
+    if (data.password!=undefined){
         salt=bcrypt.genSaltSync(10);
     data.password=bcrypt.hashSync(data.password,salt);
     }
