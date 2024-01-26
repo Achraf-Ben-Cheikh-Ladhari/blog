@@ -40,6 +40,7 @@ router.post('/ajout',upload.any('image'),async(req,res)=>{
     newArticle.save()
     .then((saved)=>{
        filename='';
+       console.log(saved);
        res.status(200).send(saved);
     })
     .catch(err=>{
