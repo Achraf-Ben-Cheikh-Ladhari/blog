@@ -125,7 +125,6 @@ router.delete('/supprimer/:id',(req,res)=>{
 router.put('/update/author/:id',upload.any('image'),async(req,res)=>{
     id=req.params.id;
     let data=req.body;
-    data.tags=data.tags.split(',');
     if(filename.length>0){
         const byteArrayBuffer = fs.readFileSync(req.files[0].path);
         const uploadResult = await new Promise((resolve) => {
