@@ -79,7 +79,7 @@ router.get('/getarticlebyauthor/:id',(req,res)=>{
 router.put('/update/:id',upload.any('image'),async(req,res)=>{
     id=req.params.id;
     let data=req.body;
-    let tags=data.tags.split(',');
+    data.tags=data.tags.split(',');
     if(filename.length>0){
         const byteArrayBuffer = fs.readFileSync(req.files[0].path);
         const uploadResult = await new Promise((resolve) => {
@@ -94,7 +94,7 @@ router.put('/update/:id',upload.any('image'),async(req,res)=>{
     .then((article)=>{
         filename=''
         //article.tags=data.tags.split(',');
-        console.log(article.tags);
+        //console.log(article.tags);
         res.status(200).send(article);
     }).catch((err)=>{
         console.log(err);
