@@ -66,7 +66,7 @@ router.post('/login',(req,res)=>{
         (author)=>{
             let valid=bcrypt.compareSync(data.password,author.password);
             if(!valid){
-                res.send('email or password invalid!')
+                res.status(404).send('email or password invalid!')
             }else{
                 let payload={
                     _id:author.id,
@@ -74,13 +74,13 @@ router.post('/login',(req,res)=>{
                     fullname:author.name+' '+author.lastname
                 }
                 let token=jWt.sign(payload,'123456789');
-                res.send({mytoken:token})
+                res.status(200).send({mytoken:token})
             }
         }
     )
     .catch(
         err=>{
-            res.send(err);
+            res.status(400).send(err);
         }
     )
 })
