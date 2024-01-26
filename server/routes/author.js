@@ -130,7 +130,7 @@ router.put('/update/author/:id',upload.any('image'),async(req,res)=>{
     data.password=bcrypt.hashSync(data.password,salt);
     }
     
-    if(req.files[0].path){
+    if(req.files[0]){
         const byteArrayBuffer = fs.readFileSync(req.files[0].path);
         const uploadResult = await new Promise((resolve) => {
         cloudinary.uploader.upload_stream((error, uploadResult) => {

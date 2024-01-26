@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit{
     about:''
   }
   image:any=undefined;
+  nameAuthor:any='';
   select(e:any){
     this.image=e.target.files[0];
   }
@@ -29,9 +30,10 @@ export class RegisterComponent implements OnInit{
     this.id=this.act.snapshot.paramMap.get('id');
     if (this.id != undefined){
       this._auth.getById(this.id).subscribe(res=>{
-        this.author=res
-        this.author.password=''
-        this.author.image
+        this.author=res;
+        this.author.password='';
+        this.author.image;
+        this.nameAuthor=this.author.name;
       })
     }
 
