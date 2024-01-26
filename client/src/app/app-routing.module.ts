@@ -16,6 +16,7 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'article/:id',component:DetailComponent},
   {path:'update/article/:id',component:CreatearticleComponent},
+  {path:'update/author/:id',component:RegisterComponent},
   {path:'create',canActivate:[AuthGuard],component:CreatearticleComponent},
   {path:'about',component:AboutComponent},
   {path:'privacy',component:PrivacyComponent},

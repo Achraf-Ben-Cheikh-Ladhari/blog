@@ -119,4 +119,35 @@ router.delete('/supprimer/:id',(req,res)=>{
         res.status(200).send({message: "User Succufully deleted"});
     })
 })
+
+
+//update user
+router.put('/update/author/:id',upload.any('image'),async(req,res)=>{
+    id=req.params.id;
+    let data=req.body;
+    data.tags=data.tags.split(',');
+    if(filename.length>0){
+        const byteArrayBuffer = fs.readFileSync(req.files[0].path);
+        const uploadResult = await new Promise((resolve) => {
+        cloudinary.uploader.upload_stream((error, uploadResult) => {
+        return resolve(uploadResult);
+        }).end(byteArrayBuffer);
+        });
+        data.image=uploadResult.url;
+    }   
+    Author.findByIdAndUpdate({_id:id},data)
+    .then((author)=>{
+        filename=''
+        if(data.image == undefined){
+            data.image=author.image
+            res.status(200).send(author);
+        }else{
+            res.status(200).send(author);
+        }
+        //console.log(author.image+ " 3************");
+    }).catch((err)=>{
+        console.log(err);
+    });
+
+})
 module.exports=router;

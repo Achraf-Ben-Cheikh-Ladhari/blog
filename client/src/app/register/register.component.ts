@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit{
 
-  author={
+  author:any={
     name:'',
     lastname:'',
     email:'',
@@ -20,10 +21,38 @@ export class RegisterComponent implements OnInit{
   select(e:any){
     this.image=e.target.files[0];
   }
-  constructor(private _auth:AuthService, private router:Router){}
+  id:any;
+  constructor(private _auth:AuthService, private router:Router,private act:ActivatedRoute){}
 
   ngOnInit(): void {
+
+    this.id=this.act.snapshot.paramMap.get('id');
+    if (this.id != undefined){
+      this._auth.getById(this.id).subscribe(res=>{
+        this.author=res
+        this.author.password=''
+        this.author.image=undefined
+      })
+    }
+
+    
       
+  }
+  modify(){
+    let fd=new FormData()
+    fd.append('name',this.author.name)
+    fd.append('lastname',this.author.lastname)
+    fd.append('email',this.author.email)
+    if (this.author.password!=''){
+      fd.append('password',this.author.password)
+    }
+    if (this.author.image!=undefined){
+      fd.append('image',this.image)
+    }
+    fd.append('about',this.author.about)
+    this._auth.update(this.id,fd).subscribe(res=>{
+      this.router.navigate(['author/'+this.id]);
+    })
   }
   register(){
     let fd=new FormData()

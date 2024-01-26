@@ -1,11 +1,9 @@
 <div class="container mt-4">
 
 
-    <h2 class="text-center"> Create author account </h2>
-
+    <h2 class="text-center" *ngIf="id!=undefined"> Update {{author.name}} account </h2>
+    <h2 class="text-center" *ngIf="id==undefined"> Create author account </h2>
     <div class="col-6 mx-auto">
-
-     
 
         <input [(ngModel)]='author.name' type="text" class="form-control m-1" placeholder="name">
         <input [(ngModel)]='author.lastname' type="text" class="form-control m-1" placeholder="lastname">
@@ -14,7 +12,8 @@
         <input (change)='select($event)' type="file"  class="form-control m-1" placeholder="image">
         <textarea [(ngModel)]='author.about' name="" id="" cols="30" rows="4" placeholder="about" class="form-control m-1" ></textarea>
 
-        <button (click)='register()' class="btn btn-dark form-control m-1">Register</button>
+        <button (click)='register()' *ngIf="id==undefined" class="btn btn-dark form-control m-1">Register</button>
+        <button (click)='modify()' *ngIf="id!=undefined" class="btn btn-dark form-control m-1">Update</button>
 
 
     </div>

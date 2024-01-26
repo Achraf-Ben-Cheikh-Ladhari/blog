@@ -15,7 +15,14 @@
               <h1 class="h3 text-dark mb-3">{{author.name+' '+author.lastname}}</h1>
               <div class="content">
                 <p>{{author.about}}</p>
-                <button class="btn btn-dark" [routerLink]="['/create']">Create new Article</button>              
+              </div>
+              <div class="card-meta list-inline mt-4">
+                <li class="list inline-item mt-2">
+                  <ul class="card-meta-tag list-inline">
+                    <li class="list-inline-item"><button [routerLink]="['/create']" class="btn btn-dark">Create new Article</button></li>
+                    <li class="list-inline-item"><button [routerLink]="['/update/author/'+author._id]" class="btn btn-secondary">Update</button></li>
+                  </ul>
+                </li>
               </div>
             </div>
           </div>

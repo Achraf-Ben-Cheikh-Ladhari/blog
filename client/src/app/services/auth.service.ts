@@ -22,6 +22,9 @@ export class AuthService {
     return this.http.get(this.url+'all');
   }
   
+  update(id:any,author:any){
+    return this.http.put(this.url+'update/author/'+id,author);
+  }
  
   isLoggedIn(){
     let token=localStorage.getItem('token');
