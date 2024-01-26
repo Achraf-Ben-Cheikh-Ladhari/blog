@@ -80,7 +80,7 @@ router.put('/update/:id',upload.any('image'),async(req,res)=>{
     id=req.params.id;
     let data=req.body;
     data.tags=data.tags.split(',');
-    console.log(data.image);
+    console.log(data.image+"  1*******");
     if(filename.length>0){
         const byteArrayBuffer = fs.readFileSync(req.files[0].path);
         const uploadResult = await new Promise((resolve) => {
@@ -90,13 +90,13 @@ router.put('/update/:id',upload.any('image'),async(req,res)=>{
         });
         data.image=uploadResult.url;
     }
-    console.log(data.image);
+    console.log(data.image+ " 2*****************");
    
     Article.findByIdAndUpdate({_id:id},data)
     .then((article)=>{
         filename=''
         //article.tags=data.tags.split(',');
-        console.log(article.image);
+        console.log(article.image+ " 3************");
         res.status(200).send(article);
     }).catch((err)=>{
         console.log(err);
