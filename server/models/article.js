@@ -19,7 +19,7 @@ const Article=mongoose.model('Article',{
         type:String
     },
     timer:{
-        type:String
+        type:Number
     },
     tags:{
         type:Array
