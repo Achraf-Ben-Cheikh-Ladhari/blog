@@ -80,9 +80,9 @@ router.put('/update/:id',upload.any('image'),async(req,res)=>{
     id=req.params.id;
     let data=req.body;
     data.tags=data.tags.split(',');
-    const byteArrayBuffer = fs.readFileSync(req.files[0].path);
-    console.log(byteArrayBuffer);
+   // console.log(byteArrayBuffer);
     if(filename.length>0){
+        const byteArrayBuffer = fs.readFileSync(req.files[0].path);
         const uploadResult = await new Promise((resolve) => {
         cloudinary.uploader.upload_stream((error, uploadResult) => {
         return resolve(uploadResult);
@@ -95,7 +95,7 @@ router.put('/update/:id',upload.any('image'),async(req,res)=>{
     .then((article)=>{
         filename=''
         //article.tags=data.tags.split(',');
-        //console.log(article.tags);
+        console.log(article.image);
         res.status(200).send(article);
     }).catch((err)=>{
         console.log(err);

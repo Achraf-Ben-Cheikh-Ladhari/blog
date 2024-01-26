@@ -49,7 +49,9 @@ id:any
 
   image:any;
   select(e:any){
-    this.image=e.target.files[0];
+    if (e.target.files[0]!=null){
+      this.image=e.target.files[0];
+    }
   }
 
   constructor(private _article:ArticleService, private router:Router,private act:ActivatedRoute){}
