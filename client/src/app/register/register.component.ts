@@ -9,7 +9,7 @@ import * as CryptoJS from 'crypto-js';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit{
-
+  err=undefined;
   author:any={
     name:'',
     lastname:'',
@@ -68,6 +68,8 @@ export class RegisterComponent implements OnInit{
     .subscribe(
       res=>{
         this.router.navigate(['/login']);
+      },err=> {
+        this.err=err;
       }
     )
   }

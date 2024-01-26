@@ -4,7 +4,9 @@
     <h2 class="text-center" *ngIf="id!=undefined"> Update {{nameAuthor}} account </h2>
     <h2 class="text-center" *ngIf="id==undefined"> Create author account </h2>
     <div class="col-6 mx-auto">
-
+        <div class="alert alert-danger" role="alert" *ngIf="err!=undefined">
+            Image not defined or Email already used!
+        </div>
         <input [(ngModel)]='author.name' type="text" class="form-control m-1" placeholder="name">
         <input [(ngModel)]='author.lastname' type="text" class="form-control m-1" placeholder="lastname">
         <input  [(ngModel)]='author.email' type="text" class="form-control m-1" placeholder="email">
