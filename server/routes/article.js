@@ -90,6 +90,7 @@ router.put('/update/:id',upload.any('image'),async(req,res)=>{
     Article.findByIdAndUpdate({_id:id},data)
     .then((article)=>{
         filename=''
+        article.tags=tags;
         res.status(200).send(article);
     }).catch((err)=>{
         console.log(err);
