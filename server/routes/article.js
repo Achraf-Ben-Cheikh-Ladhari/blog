@@ -95,7 +95,7 @@ router.put('/update/:id',upload.any('image'),async(req,res)=>{
     Article.findByIdAndUpdate({_id:id},data)
     .then((article)=>{
         filename=''
-        if(data == undefined){
+        if(data.image == undefined){
             data.image=article.image
             res.status(200).send(article);
         }else{
