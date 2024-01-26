@@ -74,12 +74,18 @@ router.get('/getarticlebyauthor/:id',(req,res)=>{
 })
 
 //update by id 
-router.put('/update/:id',upload.any('image'),(req,res)=>{
+router.put('/update/:id',upload.any('image'),async(req,res)=>{
     id=req.params.id;
     let data=req.body;
     let tags=data.tags.split(',');
-    if(filename.length>0){
-        data.image=filename;
+    const byteArrayBuffer = fs.readFileSync(req.files[0].path);
+    const uploadResult = await new Promise((resolve) => {
+    cloudinary.uploader.upload_stream((error, uploadResult) => {
+        return resolve(uploadResult);
+    }).end(byteArrayBuffer);
+    });
+    if(uploadResult!=undefined){
+        data.image=uploadResult.url;
     }
     Article.findByIdAndUpdate({_id:id},data)
     .then((article)=>{

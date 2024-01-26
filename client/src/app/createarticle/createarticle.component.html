@@ -1,7 +1,8 @@
 <div class="container mt-4">
 
+    <h2 class="text-center" *ngIf="id != null"> Update article  </h2>
 
-    <h2 class="text-center"> Create article  </h2>
+    <h2 class="text-center" *ngIf="id==null" > Create article  </h2>
 
     <div class="col-6 mx-auto">
 
@@ -23,8 +24,9 @@
         <div class="m-1">
          <angular-editor [placeholder]="'Enter text here...'" [config]="config" [(ngModel)]="article.content"></angular-editor>
         </div>
+        <button (click)="updatearticle()" *ngIf="id != null"class="btn btn-dark form-control m-1">Update</button>
 
-        <button (click)="createarticle()" class="btn btn-dark form-control m-1">Create</button>
+        <button (click)="createarticle()" *ngIf="id == null"class="btn btn-dark form-control m-1">Create</button>
 
 
     </div>

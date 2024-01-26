@@ -3,7 +3,11 @@
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div class="row g-4 g-lg-5 text-center text-lg-start justify-content-center justify-content-lg-start">
+            <div class="alert alert-danger" role="alert" *ngIf="idA!=''">
+              Article Deleted!
+            </div>
             <div class="col-lg-3 col-md-4 col-sm-5 col-6">
+              
               <img class="img-fluid rounded" [src]="author.image" alt="{{author.name}}" width="250" height="250">
             </div>
             <div class="col-lg-9 col-md-12">
@@ -57,6 +61,14 @@
                 </ul>
               </li>
             </ul>
+            <div class="card-meta list-inline mt-4">
+              <li class="list inline-item mt-2">
+                <ul class="card-meta-tag list-inline">
+                  <li class="list-inline-item"><button (click)="delete(article._id)" class="btn btn-danger">Delete</button></li>
+                  <li class="list-inline-item"><button (click)="update(article._id)" class="btn btn-secondary">Update</button></li>
+                </ul>
+              </li>
+            </div>
           </div>
         </article>
       </div>

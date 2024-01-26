@@ -14,6 +14,14 @@ export class ArticleService {
     return this.http.post(this.url+'ajout',article);
   }
 
+  delete(id:any){
+    return this.http.delete(this.url+'supprimer/'+id)
+  }
+
+  update(id:any,article:any){
+    return this.http.put(this.url+'update/'+id,article)
+  }
+
   getAllArticle(){
     return this.http.get(this.url+'get');
   }
