@@ -75,38 +75,38 @@ router.get('/getarticlebyauthor/:id',(req,res)=>{
     });
 })
 
-//update by id 
-router.put('/update/:id',upload.any('image'),async(req,res)=>{
-    id=req.params.id;
-    let data=req.body;
-    data.tags=data.tags.split(',');
-    console.log(data.image+"  1*******");
-    if(filename.length>0){
-        const byteArrayBuffer = fs.readFileSync(req.files[0].path);
-        const uploadResult = await new Promise((resolve) => {
-        cloudinary.uploader.upload_stream((error, uploadResult) => {
-        return resolve(uploadResult);
-        }).end(byteArrayBuffer);
-        });
-        data.image=uploadResult.url;
-    }
-    console.log(data.image+ " 2*****************");
-   
-    Article.findByIdAndUpdate({_id:id},data)
-    .then((article)=>{
-        filename=''
-        if(data.image == undefined){
-            data.image=article.image
-            res.status(200).send(article);
-        }else{
-            res.status(200).send(article);
-        }
-        //console.log(article.image+ " 3************");
-    }).catch((err)=>{
-        console.log(err);
-    });
+router.put('/update/:id', upload.any('image'), async (req, res) => {
+    try {
+        const id = req.params.id;
+        let data = req.body;
+        data.tags = data.tags.split(',');
 
-})
+        // Check if a new image is provided
+        if (req.files.length > 0) {
+            const byteArrayBuffer = fs.readFileSync(req.files[0].path);
+            const uploadResult = await new Promise((resolve) => {
+                cloudinary.uploader.upload_stream((error, uploadResult) => {
+                    return resolve(uploadResult);
+                }).end(byteArrayBuffer);
+            });
+            data.image = uploadResult.url;
+        }
+
+        // Find the article by ID and update it
+        const article = await Article.findByIdAndUpdate({ _id: id }, data, { new: true });
+
+        // Check if no new image is provided, keep the existing image
+        if (!req.files.length) {
+            data.image = article.image;
+        }
+
+        res.status(200).send(article);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 
 //delete article by id
 router.delete('/supprimer/:id',(req,res)=>{
