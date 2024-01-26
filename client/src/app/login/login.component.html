@@ -7,7 +7,9 @@
 
      
 
-
+        <div class="alert alert-danger" role="alert" *ngIf="err!=undefined">
+            Password Incorrect or Email!
+          </div>
         <input  [(ngModel)]='author.email' type="text" class="form-control m-1" placeholder="email">
         <input [(ngModel)]='author.password' type="password" class="form-control m-1" placeholder="password">
       

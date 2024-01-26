@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit{
     email:'',
     password:''
   }
+  err:undefined;
   token:any
   constructor(private _auth:AuthService,private router:Router){}
   ngOnInit(): void {
@@ -25,8 +26,10 @@ export class LoginComponent implements OnInit{
       this.router.navigate(['/home']);
     },
     err=>{
-      console.log(err);
+      //console.log(err);
+      this.err=err
     }
     )  
+    this.ngOnInit();
   }
 }
