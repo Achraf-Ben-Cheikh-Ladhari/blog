@@ -1,0 +1,15 @@
+---
+  - name: "Stop containers and images and remove them"
+    hosts: localhost
+    tasks:
+    - name : Stop containers
+      command : sudo docker stop client-container
+      ignore_errors: yes
+
+    - name : Remove containers
+      command : sudo docker rm client-container --force
+      ignore_errors: yes
+
+    - name : Remove images
+      command : sudo docker rmi client-image --force 
+      ignore_errors: yes

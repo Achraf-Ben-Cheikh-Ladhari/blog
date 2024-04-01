@@ -1,0 +1,19 @@
+---
+- name : "Build Automated App"
+  hosts : localhost
+  tasks:
+  - name : Stop Containers and remove them
+    command : sudo docker compose down
+    ignore_errors: yes
+  
+  - name : Remove client image
+    command : sudo docker rmi blog-client --force
+    ignore_errors: yes
+  
+  - name : Remove server image
+    command : sudo docker rmi blog-server --force
+    ignore_errors: yes
+
+  - name : Build images and run 
+    command : sudo docker compose up -d
+

@@ -1,0 +1,21 @@
+---
+- name: "Automated Build and Remove"
+  hosts: localhost
+  tasks:
+    - name : Stop container
+      command : sudo docker stop client-container
+      ignore_errors: yes
+
+    - name : Remove container
+      command : sudo docker rm client-container --force
+      ignore_errors: yes
+
+    - name : Remove image
+      command : sudo docker rmi client-image --force
+      ignore_errors: yes
+    
+    - name : Build Image
+      command : sudo docker build -t client-image .
+    
+    - name : Run image
+      command : sudo docker run -d -p 4200:4200 --name client-container client-image
